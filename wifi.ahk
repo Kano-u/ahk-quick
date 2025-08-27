@@ -4,7 +4,7 @@
 ; TrayTip("text", "title", 16)
 
 result := Run_获取输出_使用临时文件('netsh wlan show interface | findstr ""0-wifi-out-online""')
-if (result = "") {
+if (result = "错误：命令可能执行失败，未生成输出文件。") {
   Run("netsh wlan connect name=0-wifi-out-online", ,"Hide")
   Sleep(1000)
   output := Run_获取输出_使用临时文件('netsh wlan show interface | findstr ""0-wifi-out-online""')
@@ -16,7 +16,8 @@ if (result = "") {
   }
 }
 else {
-  TrayTip("ℹ️ 已连接 0-wifi-out-online", "", 16)
+  ; Run("netsh wlan connect name=0-wifi-out-online", ,"Hide")
+  TrayTip("ℹ️ 已连接 0-wifi-out-online", result, 16)
 }
 
 
