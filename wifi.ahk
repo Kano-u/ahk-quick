@@ -41,15 +41,3 @@ Run_获取输出_使用临时文件(command) {
 
     return output
 }
-
-
-; https://autohotkey.top/AutoHotkey2.0/docs/lib/Run.htm
-; 在以上网页链接中，出现该函数的定义
-RunWaitOne(command) {
-  shell := ComObject("WScript.Shell")
-  ; 通过 cmd.exe 执行单条命令
-  exec := shell.Exec(A_ComSpec " /C " command)
-  
-  ; 读取并返回命令的输出
-  return exec.StdOut.ReadAll()
-}
